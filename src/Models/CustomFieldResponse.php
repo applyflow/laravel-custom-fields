@@ -177,7 +177,7 @@ class CustomFieldResponse extends Model
 
     public static function formatCustomFieldResponse(ResourceCollection $responses)
     {
-        return $responses->groupBy('field_id')->map(function ($item, $key) {
+        return $responses->sortBy([['field.group', 'asc'], ['field.order', 'asc']])->groupBy('field_id')->map(function ($item, $key) {
             $first_item = $item[0];
             $values = $item->pluck('value');
 
